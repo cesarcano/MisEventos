@@ -44,6 +44,18 @@
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/lbl_for_TipoEvento"/>
+
+        <Spinner
+            android:id="@+id/spn_TipoEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="2dp"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
