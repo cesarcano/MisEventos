@@ -5,4 +5,13 @@
     <string name="action_AgregarEvento">Agregar evento</string>
     <string name="action_VerListaEventos">Lista de eventos</string>
     <string name="action_MisEventos">Mis eventos</string>
+
+    <!-- ACTIVITY AGREGAR EVENTO -->
+    <string name="txt_NombreEvento">Nombre del evento</string>
+    <string name="txt_DescripcionEvento">Descripción del evento</string>
+    <string name="activityName_AgregarEvento">Nuevo Evento</string>
+    <string name="lbl_for_Calendar">Seleccione la fecha:</string>
+    <string name="lbl_for_TimePicker">Seleccione la hora</string>
+    <string name="action_GuaradarEvento">Guardar Evento</string>
+    <string name="action_Cancelar">Cancelar</string>
 </resources>

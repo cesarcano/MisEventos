@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.gmail.cesarcanojmz.miseventos.AgregarEvento">
+
+    <item
+        android:id="@+id/action_GuardarEvento"
+        android:orderInCategory="100"
+        android:title="@string/action_GuaradarEvento"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_save_black_24dp" />
+
+    <item
+        android:id="@+id/action_Cancelar"
+        android:orderInCategory="100"
+        android:title="@string/action_Cancelar"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_cancel_black_24dp"/>
+
+
+</menu>
