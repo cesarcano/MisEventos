@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.gmail.cesarcanojmz.miseventos.MainActivity">
+    <item
+        android:id="@+id/action_AgregarEvento"
+        android:orderInCategory="100"
+        android:title="@string/action_AgregarEvento"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_VerListaEventos"
+        android:orderInCategory="100"
+        android:title="@string/action_VerListaEventos"
+        app:showAsAction="withText"/>
+
+    <item
+        android:id="@+id/action_MisEventos"
+        android:orderInCategory="100"
+        android:title="@string/action_MisEventos"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_Salir"
+        android:orderInCategory="100"
+        android:title="@string/action_Salir"
+        app:showAsAction="always" />
+</menu>
