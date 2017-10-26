@@ -15,10 +15,11 @@
         app:showAsAction="withText"/>
 
     <item
-        android:id="@+id/action_MisEventos"
+        android:id="@+id/action_Actualizar"
         android:orderInCategory="100"
-        android:title="@string/action_MisEventos"
-        app:showAsAction="never" />
+        android:title="@string/action_Actualizar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_autorenew_black_24dp"/>
 
     <item
         android:id="@+id/action_Salir"

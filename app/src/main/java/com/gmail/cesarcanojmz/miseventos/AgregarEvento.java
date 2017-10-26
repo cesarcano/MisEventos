@@ -68,8 +68,8 @@ public class AgregarEvento extends AppCompatActivity {
             case R.id.action_GuardarEvento:
                 Evento evento = new Evento(
                         txt_nombreEvento.getText().toString().isEmpty()?"Sin nombre":  txt_nombreEvento.getText().toString(),
-                        txt_descripcionEvento.getText().toString().isEmpty()?"Sin descripción":  txt_nombreEvento.getText().toString(),
-                        spn_TipoEvento.getSelectedItem().toString(),
+                        txt_descripcionEvento.getText().toString().isEmpty()?"Sin descripción":  txt_descripcionEvento.getText().toString(),
+                        spn_TipoEvento.getSelectedItemPosition() + 1,
                         dateP_diaEvento.getDayOfMonth(),
                         dateP_diaEvento.getMonth(),
                         dateP_diaEvento.getYear(),

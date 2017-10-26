@@ -36,7 +36,7 @@ public class AdminSQLite extends SQLiteOpenHelper { // CAMPOS DE CLASE
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_NOMBRE + " TEXT , " +
                 COLUMN_DESCRIPCION + " TEXT , " +
-                COLUMN_TIPO + " TEXT , " +
+                COLUMN_TIPO + " INTEGER , " +
                 COLUMN_FECHA + " DATE, " +
                 COLUMN_HORA + " TIME, " +
                 COLUMN_DIA + " INTEGER, " +
@@ -53,7 +53,7 @@ public class AdminSQLite extends SQLiteOpenHelper { // CAMPOS DE CLASE
     }
 
     //Añade un nuevo  evento a la Base de Datos
-    public void createEvento (String nombre, String descripcion, String tipo,  String fecha, String hora, int dia) {
+    public void createEvento (String nombre, String descripcion, int tipo,  String fecha, String hora, int dia) {
         // metodo propio; inserta valores a la tabla
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOMBRE, nombre);
@@ -104,7 +104,11 @@ public class AdminSQLite extends SQLiteOpenHelper { // CAMPOS DE CLASE
      * ORDENAR NOMBRES POR DIAS DE LA SEMANA  ASC
      */
 
-    //ordenar todos los eventos de Lun a Dom Hora asc
+    /**
+     * REGRESA TODA LA LISTA DE EVENTOS
+     * @param
+     * @return String[]
+     */
     public Cursor getAllEvents(){
         SQLiteDatabase db = getReadableDatabase();
         String query = "SELECT * FROM " + TABLA + " ORDER BY "+ COLUMN_FECHA + " ASC;";
@@ -116,10 +120,15 @@ public class AdminSQLite extends SQLiteOpenHelper { // CAMPOS DE CLASE
         return c;
     }
 
-    public Cursor getByAscDay(){
+    /**
+     * REGRESA TODA LA LISTA DE EVENTOS
+     * @param
+     * @return String[]
+     */
+    public Cursor getAllMyEvents(){
         SQLiteDatabase db = getReadableDatabase();
-        String query = "SELECT * FROM " + TABLA + " ORDER BY "+ COLUMN_DIA +", "+
-                COLUMN_FECHA + " ASC;";
+        String query = "SELECT * FROM " + TABLA + " WHERE " + COLUMN_MYACT +" = " + 1 +
+        " ORDER BY "+ COLUMN_FECHA + " ASC;";
         Cursor c = db.rawQuery(query, null);
 
         if (c != null) {
@@ -128,9 +137,53 @@ public class AdminSQLite extends SQLiteOpenHelper { // CAMPOS DE CLASE
         return c;
     }
 
-    public Cursor getByADay(int day){
+    /**
+     * OBTENER UN TIPO DE EVENTO SIN IMPORTAR LA FECHA
+     * @param  tipo
+     * @return String[]
+     */
+
+    public Cursor getAllEventsByType(int tipo){
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLA +
+                " WHERE "+ COLUMN_TIPO + " = " + tipo +
+                " ORDER BY "+  COLUMN_FECHA + ", " + COLUMN_HORA + " ASC;";
+        Cursor c = db.rawQuery(query, null);
+
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    /**
+     * ARROJA TODOS LOS EVENTOS EN X DIA DE LA SEMANA (EJ. LOS EVENTOS QUE HABRÁ LOS DOMINGOS SIN IMPORTAR FECHA)
+     * @param
+     * @return String[]
+     */
+
+    public Cursor getAllEventsByADay(int day){
         SQLiteDatabase db = getReadableDatabase();
         String query = "SELECT * FROM " + TABLA + " WHERE " + COLUMN_DIA +" = '" + day +"' ORDER BY "+ COLUMN_FECHA+", "+
+                COLUMN_HORA + " ASC;";
+        Cursor c = db.rawQuery(query, null);
+
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    /**
+     * ARROJA TODOS LOS UN TIPO DE EVENTO EN X DIA DE LA SEMANA (EJ. LOS EVENTOS DE WEB EN LOS DOMINGOS SIN IMPORTAR FECHA)
+     * @param
+     * @return String[]
+     */
+
+    public Cursor getbyEventAndDay(int day, int evento){
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLA + " WHERE " + COLUMN_DIA +" = '" + day +"' " +
+                "AND " + COLUMN_TIPO + "='" + evento + "' ORDER BY "+ COLUMN_FECHA+", "+
                 COLUMN_HORA + " ASC;";
         Cursor c = db.rawQuery(query, null);
 

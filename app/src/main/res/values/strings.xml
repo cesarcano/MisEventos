@@ -1,10 +1,30 @@
 <resources>
     <string name="app_name">Mis Eventos</string>
+
+    <string name="lbl_for_Filtros">Filtros de la lista de eventos</string>
+    <string name="chk_Fecha">Fecha (Ascendente)</string>
     <string name="action_settings">Settings</string>
     <string name="action_Salir">Salir</string>
     <string name="action_AgregarEvento">Agregar evento</string>
     <string name="action_VerListaEventos">Lista de eventos</string>
-    <string name="action_MisEventos">Mis eventos</string>
+
+    <string-array name="filtro_dias">
+        <item>Todos los días</item>
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sabado</item>
+        <item>Domingo</item>
+    </string-array>
+
+    <string-array name="tipo_eventos_filtro">
+        <item>Todos los eventos</item>
+        <item>Web</item>
+        <item>Móvil</item>
+        <item>Videojuegos</item>
+    </string-array>
 
     <!-- ACTIVITY AGREGAR EVENTO -->
     <string name="txt_NombreEvento">Nombre del evento</string>
@@ -15,11 +35,15 @@
     <string name="lbl_for_TipoEvento">Tipo de Evento</string>
     <string name="action_GuaradarEvento">Guardar Evento</string>
     <string name="action_Cancelar">Cancelar</string>
+    <string name="action_Actualizar">Actualizar</string>
+    <string name="lbl_spn_DiaSemana">Dia de la semana</string>
 
     <string-array name="tipo_eventos_array">
         <item>Web</item>
         <item>Móvil</item>
         <item>Videojuegos</item>
     </string-array>
+
+
 
 </resources>

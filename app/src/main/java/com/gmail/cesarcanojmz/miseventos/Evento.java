@@ -18,13 +18,13 @@ public class Evento {
 
     private String nombre;
     private String descripcion;
-    private String tipo;
+    private int tipo;
     private int numDiaSemana;
     private String hora;
     private String fecha;
     private Context context;
 
-    public Evento(String nombre, String descripcion, String tipo, int dia, int mes, int anio, int hora, int minuto, Context contexto) {
+    public Evento(String nombre, String descripcion, int tipo, int dia, int mes, int anio, int hora, int minuto, Context contexto) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipo = tipo;
