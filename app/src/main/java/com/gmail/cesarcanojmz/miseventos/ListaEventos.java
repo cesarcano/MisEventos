@@ -6,8 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,6 +35,18 @@ public class ListaEventos extends AppCompatActivity {
         aviso = (TextView) findViewById(R.id.lbl_Aviso);
         spinnerTipo = (Spinner) findViewById(R.id.spn_TipoEvento);
 
+        /**
+         * TERMINAR */
+        listaEventos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("Has presionado un item", Long.toString(id));
+
+                showPopup(view, id);
+                return false;
+            }
+        });
     }
 
     private void loadLista() {
@@ -42,7 +56,7 @@ public class ListaEventos extends AppCompatActivity {
         int typeEvent = spinnerTipo.getSelectedItemPosition();
         AdminSQLite dbHandler;
         dbHandler = new AdminSQLite(this, null, null, 1);
-        SQLiteDatabase db = dbHandler.getWritableDatabase();
+        SQLiteDatabase db = dbHandler.getReadableDatabase();
         Cursor resultados = dbHandler.getAllEvents();
         Log.d("Item Selected", Integer.toString(typeEvent));
         if (typeEvent > 0) {
@@ -65,6 +79,29 @@ public class ListaEventos extends AppCompatActivity {
     }
 
     // MENU
+
+    public void showPopup(View v, Long id) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_pupup_listaeventos, popup.getMenu());
+        popup.show();
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.popup_Editar:
+                        Intent i_editEvent = new Intent(getBaseContext(), EditarEvento.class);
+                        startActivity(i_editEvent);
+                        break;
+                    case R.id.popup_Eliminar:
+                        break;
+                    case R.id.popup_AddToMisEventos:
+                        break;
+                }
+                return false;
+            }
+        });
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -89,12 +126,23 @@ public class ListaEventos extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                
+
             }
         });
 
         loadLista();
         return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(R.id.action_AgregarEvento == id) {
+            Intent i_nvoEvento = new Intent(getBaseContext(), AgregarEvento.class);
+            startActivity(i_nvoEvento);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

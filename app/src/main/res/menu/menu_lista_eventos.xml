@@ -8,6 +8,31 @@
         android:id="@+id/action_Spinner"
         android:title="ActionBar Spinner"
         app:actionViewClass="android.widget.Spinner"
-        android:iconTint="@color/colorAccent"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_AgregarEvento"
+        android:orderInCategory="100"
+        android:title="@string/action_AgregarEvento"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_EditarEvento"
+        app:actionViewClass="android.widget.Spinner"
+        app:showAsAction="always"
+        android:visible="false"
+        android:icon="@drawable/ic_create_black_24dp"
+        android:title="@string/action_EditarEvento"/>
+    <item
+        android:id="@+id/action_Eliminar"
+        app:actionViewClass="android.widget.Spinner"
+        app:showAsAction="always"
+        android:visible="false"
+        android:icon="@drawable/ic_delete_forever_black_24dp"
+        android:title="@string/action_Eliminar"/>
+    <item
+        android:id="@+id/action_AddToMyEvents"
+        android:title="@string/action_AddToMyEvents"
+        android:visible="false"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_playlist_add_black_24dp"/>
 </menu>

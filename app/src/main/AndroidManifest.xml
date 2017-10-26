@@ -26,8 +26,11 @@
             <!-- android:theme="@style/Base.Theme.AppCompat.Light.Dialog.Alert" -->
 
         </activity>
-        <activity android:name=".ListaEventos"
-            android:label="@string/activityName_ListaEventos">
+        <activity
+            android:name=".ListaEventos"
+            android:label="@string/activityName_ListaEventos"></activity>
+        <activity android:name=".EditarEvento"
+            android:label="@string/activityName_EditarEvento">
 
         </activity>
     </application>

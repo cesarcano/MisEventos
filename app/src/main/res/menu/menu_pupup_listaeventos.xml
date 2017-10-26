@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context="com.gmail.cesarcanojmz.miseventos.ListaEventos">
+
+    <item
+        android:id="@+id/popup_Editar"
+        android:title="@string/action_EditarEvento"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/popup_Eliminar"
+        android:title="@string/action_Eliminar"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/popup_AddToMisEventos"
+        android:title="@string/popup_AddToMisEventos"
+        app:showAsAction="always"/>
+
+</menu>
