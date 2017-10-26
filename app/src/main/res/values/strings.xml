@@ -20,7 +20,7 @@
     </string-array>
 
     <string-array name="tipo_eventos_filtro">
-        <item>Todos los eventos</item>
+        <item>Todos</item>
         <item>Web</item>
         <item>Móvil</item>
         <item>Videojuegos</item>
@@ -37,13 +37,13 @@
     <string name="action_Cancelar">Cancelar</string>
     <string name="action_Actualizar">Actualizar</string>
     <string name="lbl_spn_DiaSemana">Dia de la semana</string>
+    <string name="activityName_ListaEventos">Todos los eventos</string>
 
     <string-array name="tipo_eventos_array">
         <item>Web</item>
         <item>Móvil</item>
         <item>Videojuegos</item>
     </string-array>
-
 
 
 </resources>

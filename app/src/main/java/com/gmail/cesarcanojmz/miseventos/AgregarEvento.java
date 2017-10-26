@@ -40,7 +40,7 @@ public class AgregarEvento extends AppCompatActivity {
         ArrayAdapter<CharSequence> spn_adapter = ArrayAdapter.createFromResource(getBaseContext(), R.array.tipo_eventos_array,
                 android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
-        spn_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         // Apply the adapter to the spinner
         spn_TipoEvento.setAdapter(spn_adapter);
 

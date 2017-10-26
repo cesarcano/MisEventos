@@ -19,9 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AgregarEvento"
+        <activity
+            android:name=".AgregarEvento"
             android:label="@string/activityName_AgregarEvento">
+
             <!-- android:theme="@style/Base.Theme.AppCompat.Light.Dialog.Alert" -->
+
+        </activity>
+        <activity android:name=".ListaEventos"
+            android:label="@string/activityName_ListaEventos">
 
         </activity>
     </application>

@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i_NvoEvento);
                 break;
             case  R.id.action_VerListaEventos:
+                Intent i_ListaEventos = new Intent(getBaseContext(), ListaEventos.class);
+                startActivity(i_ListaEventos);
                 break;
             case R.id.action_Actualizar:
                 loadLista();
@@ -112,13 +114,10 @@ public class MainActivity extends AppCompatActivity {
         int whichDay = spn_Dia.getSelectedItemPosition();
         String day = spn_Dia.getSelectedItem().toString();
 
-
-        Log.d("DATOS", typeEvent + " " + day + " "+ whichDay);
-
         AdminSQLite dbHandler;
         dbHandler = new AdminSQLite(this, null, null, 1);
         SQLiteDatabase db = dbHandler.getWritableDatabase();
-        Cursor resultados = dbHandler.getAllEvents();
+        Cursor resultados = dbHandler.getAllMyEvents();
         if (whichDay == 0 && typeEvent == 0) {
             Log.d("todos los eventos", day);
             resultados = dbHandler.getAllMyEvents();
@@ -136,7 +135,10 @@ public class MainActivity extends AppCompatActivity {
             resultados = dbHandler.getbyEventAndDay(whichDay, typeEvent);
         }
 
-
+        if(resultados.getCount() > 0 ) {
+            aviso.setVisibility(View.GONE);
+            listaMisEventos.setVisibility(View.VISIBLE);
+        }
         ListAdapter adapter = new SimpleCursorAdapter(
                 this,
                 android.R.layout.simple_list_item_2,

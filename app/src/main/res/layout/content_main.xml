@@ -43,14 +43,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No hay nada en Mis Eventos"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <ListView
             android:id="@+id/lv_listaMisEventos"
             android:layout_width="match_parent"
-            android:layout_height="350dp"></ListView>
+            android:layout_height="350dp"
+            android:visibility="gone">
+        </ListView>
 
     </LinearLayout>
-
-
 </LinearLayout>
