@@ -80,7 +80,7 @@ public class ListaEventos extends AppCompatActivity {
 
     // MENU
 
-    public void showPopup(View v, Long id) {
+    public void showPopup(View v, final Long id) {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu_pupup_listaeventos, popup.getMenu());
@@ -91,6 +91,7 @@ public class ListaEventos extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.popup_Editar:
                         Intent i_editEvent = new Intent(getBaseContext(), EditarEvento.class);
+                        i_editEvent.putExtra("id_Evento", id);
                         startActivity(i_editEvent);
                         break;
                     case R.id.popup_Eliminar:

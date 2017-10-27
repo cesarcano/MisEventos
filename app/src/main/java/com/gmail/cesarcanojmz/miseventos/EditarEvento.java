@@ -1,5 +1,7 @@
 package com.gmail.cesarcanojmz.miseventos;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -41,6 +43,11 @@ public class EditarEvento extends AppCompatActivity {
         spn_adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         // Apply the adapter to the spinner
         spn_TipoEvento.setAdapter(spn_adapter);
+
+        // OBTENIENDO ID
+        Bundle extras = getIntent().getExtras();
+        int id = (int) extras.getLong("id_Evento");
+        loadDatosFromDB(id);
 
         iniParams();
 
@@ -87,8 +94,16 @@ public class EditarEvento extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     // RELLENANDO LOS CAMPOS
-    public void loadDatosFromDB () {
+    public void loadDatosFromDB (int id) {
         // SE CONSULTA A LA BD PARA PODER OBTENER LOS DATOS DEL ITEM PREVIAMENTE SELECCIONADO
-        
+        AdminSQLite dbHandler;
+        dbHandler = new AdminSQLite(this, null, null, 1);
+        SQLiteDatabase db = dbHandler.getReadableDatabase();
+        Cursor resultados = dbHandler.getEventById(id);
+
+        txt_nombreEvento.setText(resultados.getString(1));
+        txt_descripcionEvento.setText(resultados.getString(2));
+        spn_TipoEvento.setSelection(Integer.parseInt(resultados.getString(3)) - 1);
+
     }
 }

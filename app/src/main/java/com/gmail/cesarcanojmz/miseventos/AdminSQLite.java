@@ -176,7 +176,6 @@ public class AdminSQLite extends SQLiteOpenHelper { // CAMPOS DE CLASE
 
     /**
      * ARROJA TODOS LOS UN TIPO DE EVENTO EN X DIA DE LA SEMANA (EJ. LOS EVENTOS DE WEB EN LOS DOMINGOS SIN IMPORTAR FECHA)
-     * @param
      * @return String[]
      */
 
@@ -185,6 +184,22 @@ public class AdminSQLite extends SQLiteOpenHelper { // CAMPOS DE CLASE
         String query = "SELECT * FROM " + TABLA + " WHERE " + COLUMN_DIA +" = '" + day +"' " +
                 "AND " + COLUMN_TIPO + "='" + evento + "' ORDER BY "+ COLUMN_FECHA+", "+
                 COLUMN_HORA + " ASC;";
+        Cursor c = db.rawQuery(query, null);
+
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
+    /**
+     * ARROJA LOS DATOS DE UN EVENTO SEGÚN SU ID
+     * @return String[]
+     */
+    public Cursor getEventById(int id){
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT * FROM " + TABLA + " WHERE " + COLUMN_ID +" = " + id +" ;";
         Cursor c = db.rawQuery(query, null);
 
         if (c != null) {

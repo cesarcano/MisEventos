@@ -106,5 +106,4 @@ public class Evento {
         SQLiteDatabase db = dbHandler.getWritableDatabase();
         dbHandler.createEvento(this.nombre, this.descripcion, this.tipo, this.fecha, this.hora, this.numDiaSemana);
     }
-
 }
