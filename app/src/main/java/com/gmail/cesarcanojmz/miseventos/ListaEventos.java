@@ -37,14 +37,13 @@ public class ListaEventos extends AppCompatActivity {
 
         /**
          * TERMINAR */
-        listaEventos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
+        listaEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("Has presionado un item", Long.toString(id));
 
                 showPopup(view, id);
-                return false;
             }
         });
     }

@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -17,12 +18,12 @@ import java.util.Calendar;
 
 public class EditarEvento extends AppCompatActivity {
 
-    final private Calendar currentDate = Calendar.getInstance();
     private DatePicker dateP_diaEvento;
     private TimePicker timeP_horaEvento;
     private EditText txt_nombreEvento;
     private EditText txt_descripcionEvento;
     private Spinner spn_TipoEvento;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +47,11 @@ public class EditarEvento extends AppCompatActivity {
 
         // OBTENIENDO ID
         Bundle extras = getIntent().getExtras();
-        int id = (int) extras.getLong("id_Evento");
+        this.id = (int) extras.getLong("id_Evento");
         loadDatosFromDB(id);
 
-        iniParams();
-
     }
 
-    private void iniParams() {
-        currentDate.add(Calendar.DAY_OF_YEAR, 0);
-        dateP_diaEvento.setMinDate(currentDate.getTimeInMillis());
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,7 +79,15 @@ public class EditarEvento extends AppCompatActivity {
                         getBaseContext());
                 Toast.makeText(getBaseContext(), "Evento creado ", Toast.LENGTH_LONG);
                 finish();
-                evento.crearEvento();
+                evento.actualizarEvento(this.id);
+                break;
+            case  R.id.action_AddToMyEvents:
+                final AdminSQLite dbHandler;
+                dbHandler= new AdminSQLite(getBaseContext(), null, null, 1);
+                SQLiteDatabase db = dbHandler.getWritableDatabase();
+                dbHandler.addToMyEvents(Integer.parseInt(Long.toString(this.id)));
+                dbHandler.close();
+                finish();
                 break;
             case  R.id.action_Cancelar:
                 finish();
@@ -95,6 +98,8 @@ public class EditarEvento extends AppCompatActivity {
     }
     // RELLENANDO LOS CAMPOS
     public void loadDatosFromDB (int id) {
+        String aux = "";
+        String args [];
         // SE CONSULTA A LA BD PARA PODER OBTENER LOS DATOS DEL ITEM PREVIAMENTE SELECCIONADO
         AdminSQLite dbHandler;
         dbHandler = new AdminSQLite(this, null, null, 1);
@@ -104,6 +109,14 @@ public class EditarEvento extends AppCompatActivity {
         txt_nombreEvento.setText(resultados.getString(1));
         txt_descripcionEvento.setText(resultados.getString(2));
         spn_TipoEvento.setSelection(Integer.parseInt(resultados.getString(3)) - 1);
-
+        // OBTENIENDO FECHA
+        aux = resultados.getString(4);
+        args =  aux.split("-");
+        dateP_diaEvento.updateDate(Integer.parseInt(args[0]), Integer.parseInt(args[1]) - 1, Integer.parseInt(args[2]));
+        aux = resultados.getString(5);
+        args =  aux.split(":");
+        timeP_horaEvento.setHour(Integer.parseInt(args[0]));
+        timeP_horaEvento.setMinute(Integer.parseInt(args[1]));
     }
+
 }
