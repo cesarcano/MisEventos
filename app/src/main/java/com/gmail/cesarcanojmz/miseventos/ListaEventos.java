@@ -81,6 +81,9 @@ public class ListaEventos extends AppCompatActivity {
     // MENU
 
     public void showPopup(View v, final Long id) {
+        final AdminSQLite dbHandler;
+        dbHandler= new AdminSQLite(getBaseContext(), null, null, 1);
+        SQLiteDatabase db = dbHandler.getWritableDatabase();
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu_pupup_listaeventos, popup.getMenu());
@@ -95,8 +98,12 @@ public class ListaEventos extends AppCompatActivity {
                         startActivity(i_editEvent);
                         break;
                     case R.id.popup_Eliminar:
+                        dbHandler.deleteEventById(Integer.parseInt(Long.toString(id)));
+                        dbHandler.close();
                         break;
                     case R.id.popup_AddToMisEventos:
+                        dbHandler.addToMyEvents(Integer.parseInt(Long.toString(id)));
+                        dbHandler.close();
                         break;
                 }
                 return false;

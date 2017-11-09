@@ -70,17 +70,6 @@ public class AdminSQLite extends SQLiteOpenHelper { // CAMPOS DE CLASE
     }
 
 
-    // Borrar un evento por su nombre de la Base de Datos
-
-    public void deleteEvento(String nombre){
-        // los datos vienen de tres tablas por tanto puede duplicarse id de evento ais que diferenciamos por el tipo tambien
-        String deleteEvento = "DELETE FROM " + TABLA
-                + " WHERE " + COLUMN_NOMBRE + " = '" + nombre + "';";
-        SQLiteDatabase db = getWritableDatabase();
-        db.execSQL(deleteEvento);
-        db.close();
-    }
-
     public Cursor updateEvento(String nombreOld, String nombre, String decripcion, String fecha, String hora, String dia) {
         SQLiteDatabase db = getReadableDatabase();
         String query = "UPDATE " + TABLA + " SET " +
@@ -207,4 +196,37 @@ public class AdminSQLite extends SQLiteOpenHelper { // CAMPOS DE CLASE
         }
         return c;
     }
+
+    /**
+     * ELIMINA UN EVENTO SEGÚN SU ID
+     */
+
+    public Cursor deleteEventById(int id) {
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "DELETE FROM " + TABLA + " WHERE " + COLUMN_ID +" = " + id + " ;";
+        Cursor c = db.rawQuery(query, null);
+
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    /**
+     * AGREGAR A MIS EVENTOS
+     */
+
+    public Cursor addToMyEvents(int id) {
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "UPDATE " + TABLA + " SET " + COLUMN_MYACT +" = '" + 1 +
+                "' WHERE "+ COLUMN_ID +" = " + id +";";
+        Cursor c = db.rawQuery(query, null);
+
+        if (c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+
 }
