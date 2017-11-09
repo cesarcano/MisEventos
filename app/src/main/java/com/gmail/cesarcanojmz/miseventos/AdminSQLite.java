@@ -70,15 +70,16 @@ public class AdminSQLite extends SQLiteOpenHelper { // CAMPOS DE CLASE
     }
 
 
-    public Cursor updateEvento(String nombreOld, String nombre, String decripcion, String fecha, String hora, String dia) {
+    public Cursor updateEvento(int id, String nombre, String decripcion, int tipo, String fecha, String hora, int dia) {
         SQLiteDatabase db = getReadableDatabase();
         String query = "UPDATE " + TABLA + " SET " +
                 COLUMN_NOMBRE + " = '" + nombre +"'," +
                 COLUMN_DESCRIPCION + " = '" + decripcion +"'," +
                 COLUMN_FECHA + " = '" + fecha +"'," +
+                COLUMN_TIPO + " = '" + tipo +"'," +
                 COLUMN_HORA + " = '" + hora +"'," +
-                COLUMN_DIA + " = '" + dia +"'," +
-                "' WHERE " + COLUMN_NOMBRE + " = '" + nombreOld + "';";
+                COLUMN_DIA + " = '" + dia +"'" +
+                " WHERE " + COLUMN_ID + " = '" + id + "';";
 
         Cursor c = db.rawQuery(query, null);
 

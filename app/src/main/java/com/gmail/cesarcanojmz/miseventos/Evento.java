@@ -103,4 +103,11 @@ public class Evento {
         SQLiteDatabase db = dbHandler.getWritableDatabase();
         dbHandler.createEvento(this.nombre, this.descripcion, this.tipo, this.fecha, this.hora, this.numDiaSemana);
     }
+
+    public void actualizarEvento(int id) {
+        AdminSQLite dbHandler;
+        dbHandler= new AdminSQLite(this.context, null, null, 1);
+        SQLiteDatabase db = dbHandler.getWritableDatabase();
+        dbHandler.updateEvento(id, this.nombre, this.descripcion, this.tipo ,this.fecha, this.hora, this.numDiaSemana);
+    }
 }

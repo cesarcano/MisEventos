@@ -23,6 +23,7 @@ public class EditarEvento extends AppCompatActivity {
     private EditText txt_nombreEvento;
     private EditText txt_descripcionEvento;
     private Spinner spn_TipoEvento;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class EditarEvento extends AppCompatActivity {
 
         // OBTENIENDO ID
         Bundle extras = getIntent().getExtras();
-        int id = (int) extras.getLong("id_Evento");
+        this.id = (int) extras.getLong("id_Evento");
         loadDatosFromDB(id);
 
     }
@@ -78,7 +79,15 @@ public class EditarEvento extends AppCompatActivity {
                         getBaseContext());
                 Toast.makeText(getBaseContext(), "Evento creado ", Toast.LENGTH_LONG);
                 finish();
-                evento.crearEvento();
+                evento.actualizarEvento(this.id);
+                break;
+            case  R.id.action_AddToMyEvents:
+                final AdminSQLite dbHandler;
+                dbHandler= new AdminSQLite(getBaseContext(), null, null, 1);
+                SQLiteDatabase db = dbHandler.getWritableDatabase();
+                dbHandler.addToMyEvents(Integer.parseInt(Long.toString(this.id)));
+                dbHandler.close();
+                finish();
                 break;
             case  R.id.action_Cancelar:
                 finish();
@@ -108,11 +117,6 @@ public class EditarEvento extends AppCompatActivity {
         args =  aux.split(":");
         timeP_horaEvento.setHour(Integer.parseInt(args[0]));
         timeP_horaEvento.setMinute(Integer.parseInt(args[1]));
-
     }
 
-    // CARGAR CALENDARIO
-    private void loadCalendar() {
-
-    }
 }
